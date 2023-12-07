@@ -6,20 +6,16 @@ const router = Router()
 const productService = new ProductManagerFile()
 
 
-
-
-
 router
     .get('/', async (req, res)=> {
-        const products = await productsService.getProducts()
-        res.send({
-            status: 'success', 
-            payload: products
-        })
+        const products = await productService.getProducts()
+        res.send(
+        products
+        )
     })
     .get('/:pid', async (req, res)=> {
         const {pid} = req.params
-        const product = await productsService.getProduct(parseInt(pid))
+        const product = await productService.getProduct(parseInt(pid))
         if (!product) {
             return res.status(400).send({
                 status: 'error', 
@@ -31,10 +27,27 @@ router
             payload: product
         })
     })
-    .post('/', async (req, res)=> {
-        const product = req.body
-        res.send('post product ')
-    })
+
+
+
+    .post("/", async (req, res) => {
+        const productoNuevo = {
+          title: req.body.title,
+          description: req.body.description,
+          code: req.body.code,
+          price: req.body.price,
+          status: req.body.status  || true,
+          stock: req.body.stock,
+          category: req.body.category,
+          thumbnails: req.body.thumbnails  || [] ,
+        };
+        res.send(await productService.agregarProducto(productoNuevo));
+      })
+
+
+
+
+
     .put('/:pid', async (req, res)=> {
         const {pid} = req.params
         res.send('put product '+pid)

@@ -8,11 +8,12 @@ app.use(express.urlencoded({extended: true}))
 
  //products
 
-app.use('/api/products', productsRouter)
+app.use('/api/producst', productsRouter)
 
 //carts
 
 app.use('/api/carts', ()=>{} )
+
 
 
 app.listen(8080, () => {

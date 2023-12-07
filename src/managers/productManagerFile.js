@@ -10,7 +10,6 @@ class ProductManagerFile{
     readFile = async () => {
         try {
             const data = await fs.promises.readFile(this.path, 'utf-8')
-            console.log(data)
             return JSON.parse(data)            
         } catch (error) {
             return []
@@ -21,7 +20,7 @@ class ProductManagerFile{
         try {
             return await this.readFile()
         } catch (error) {
-            return 'No se hay productos'
+            return 'No se encuentran productos'
         }
     }
 
@@ -37,35 +36,13 @@ class ProductManagerFile{
     }
     
     
-    addProduct = async (newItem) => {
-        try {   
-            
-            let products = await this.readFile()
-            // si esta no lo voy a crear 
-            const productDb = products.find(product => product.code === newItem.code)
-            console.log(productDb)
-            if (productDb) {
-                return `Se encuenta el producto`
-            }
-
-    
-            // console.log(products.length)
-            if (products.length === 0 ) {
-                // creando propieda id
-                newItem.id = 1
-                products.push(newItem) 
-            } else {
-                // products =  [...products, {...newItem, id: products[products.length - 1].id + 1 } ] 
-                products =  [...products, {...newItem, id: products.length + 1 } ]
-            }
-
-            await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2), 'utf-8')
-
-            return 'Producto agregado'
-        } catch (error) {
-            return new Error(error)
-        }
-    }
+    async agregarProducto(producto) {
+        let listadoProductos = await this.readFile();
+        producto.id = 1
+        listadoProductos = [...listadoProductos, producto];
+        await fs.promises.writeFile (this.path,JSON.stringify(listadoProductos, null, 2))
+        return "USTED AGREGO CON EXITO ESTE PRODUCTO";
+      }
 
     async update(pid, updateToProduct){
         let products = await this.readFile()

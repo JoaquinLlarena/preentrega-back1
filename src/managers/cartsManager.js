@@ -1,4 +1,5 @@
 const fs = require('node:fs')
+const ProductManagerFile = require('../managers/productManagerFile.js');
 
 
 class CartsManagerFile {
