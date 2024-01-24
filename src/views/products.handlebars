@@ -1,0 +1,34 @@
+<h1 class="text-center">Bienvenidos a Productos</h1>
+<div class="d-flex align-items-center justify-content-center">
+  {{#if hasPrevPage}}
+    <a
+      href="/products?numPage={{prevPage}}"
+      class="btn btn-outline-dark m-3"
+    >Anterior</a>
+  {{/if}}
+  <p class="fs-3 mb-0">{{this.page}}</p>
+  {{#if hasNextPage}}
+    <a
+      href="/products?numPage={{nextPage}}"
+      class="btn btn-outline-dark m-3"
+    >Siguiente</a>
+  {{/if}}
+</div>
+<div class="row row-cols-3 g-3 m-0">
+  {{#each products}}
+    <div class="col">
+      <div class="card bg-dark">
+        <div class="card-body text-light">
+          <h5 class="card-title">Nombre: {{this.title}} </h5>
+          <p class="card-text"><strong>{{this.category}}</strong></p>
+          <p class="card-text"><strong>Precio: {{this.price}}</strong></p>
+          <p class="card-text"><strong>Stock: {{this.stock}}</strong></p>
+          <p class="card-text"><strong>Disponible:
+              {{this.isActive}}</strong></p>
+          <a href="/product/{{this._id}}">Ver detalles</a>
+
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>

@@ -1,0 +1,9 @@
+body{
+    background-color: white;
+}
+.btn-buy{
+    background-color: white;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+}

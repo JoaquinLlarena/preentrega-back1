@@ -1,0 +1,14 @@
+{{#if product}}
+  <h1 class="text-center m-3">Detalles de producto</h1>
+  <div class="card bg-dark">
+    <div class="card-body text-light">
+      <h5 class="card-title">Nombre: {{product.title}} </h5>
+      <p class="card-text"><strong>{{product.category}}</strong></p>
+      <p class="card-text"><strong>Precio: {{product.price}}</strong></p>
+      <p class="card-text"><strong>Stock: {{product.stock}}</strong></p>
+      <p class="card-text"><strong>Disponible: {{product.isActive}}</strong></p>
+    </div>
+  </div>
+{{else}}
+  <p>{{errorMessage}}</p>
+{{/if}}
